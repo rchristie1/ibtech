@@ -1,0 +1,68 @@
+.ItemsContainer {
+    height: 400px;
+    overflow-y: scroll;
+    position: relative;
+
+    >div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 85px;
+    }
+}
+
+.NoResults {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.HeaderSection {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    background-color: #1b2025;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 18px;
+    border-radius: 6px 6px 0 0;
+}
+
+.ColumnHeadings {
+    margin: 3px 15px;
+    width: 180px;
+    cursor: pointer;
+}
+
+.ItemGroup {
+    &:hover {
+        background-color: #1b2025 !important;
+        color: #ffffff;
+        transition: all 300ms ease-in;
+    }
+
+    &:nth-child(2n+2) {
+        background-color: #ebebeb;
+    }
+
+    div {
+        width: 180px;
+        margin: 3px 15px;
+
+        &:nth-child(4n+4),
+        &:nth-child(5n+5),
+        &:nth-child(6n+6) {
+            position: relative;
+            left: 10px;
+        }
+
+        &:nth-child(7n+7) {
+            position: relative;
+            left: 30px;
+        }
+
+    }
+}

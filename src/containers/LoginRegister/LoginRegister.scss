@@ -1,0 +1,63 @@
+.LoginRegister {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FormContainer{
+    box-shadow: -10px 20px 40px 10px rgba(170,174,203,.1);
+    border: 1px solid black;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+    .BtnRegister{
+        border-radius: 25px;
+        margin-right: initial;
+        position: relative;
+    }
+}
+
+.LoadingIcon{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.FormTitile{
+    margin-top: initial;
+    color: #3a4057;
+}
+
+@media (min-width: 320px) {
+    .FormContainer {
+        height: 300px;
+        width: 400px;
+    }
+    .AuthInput {
+        margin-bottom: 10px;
+    }
+
+    .BtnRegister{
+        width: 195px;
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .FormContainer {
+        height: 500px;
+        width: 600px;
+    }
+    .AuthInput {
+        margin-bottom: 50px;
+    }
+    .BtnRegister{
+        width: 400px;
+        margin-top: initial;
+    }
+}

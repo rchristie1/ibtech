@@ -1,0 +1,77 @@
+.ItemCount {
+    border-top: 1px solid;
+    padding-top: 5px;
+}
+
+.PageTitle {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.TableContainer {
+    position: relative;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+}
+
+.ButtonGroup {
+    margin-bottom: 80px;
+    button{
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 200px){
+    .TableContainer, .ButtonGroup, .FilterSection {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .ButtonGroup{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button{
+            margin-right: initial;
+        }
+    }
+  }
+  
+  @media (min-width: 768px){
+    .TableContainer, .ButtonGroup, .FilterSection {
+      margin-left: 56px;
+      margin-right: 56px;
+    }
+
+    .ButtonGroup{
+        display: initial;
+        flex-direction: row;
+
+        button { 
+            &:first-of-type {
+                margin-right: 25px;
+                margin-bottom: 100px
+            }
+        }
+    }
+  }
+  @media (min-width: 1280px){
+    .TableContainer, .ButtonGroup, .FilterSection {
+      margin-left: 110px;
+      margin-right: 110px;
+    }
+  }
+  @media (min-width: 1366px){
+    .TableContainer, .ButtonGroup, .FilterSection {
+      margin-left: 144px;
+      margin-right: 144px;
+    }
+  }
+  @media (min-width: 1920){
+    .TableContainer, .ButtonGroup, .FilterSection {
+      margin-left: 420px;
+      margin-right: 420px;
+    }
+  }

@@ -1,0 +1,34 @@
+.Jumbotron {
+    
+    color: #ffffff;
+    font-size: 48px;
+    height: 400px;
+    margin-bottom: 70px;
+    position: relative;
+
+    .EmployeeHeading {
+        position: absolute;
+        top: -20px;
+        width: 100%;
+        background: radial-gradient(circle at 0% 0%, #373b52, #252736 58%, #1d1e26);
+        height: 420px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.Links{
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    z-index: 1;
+    a{
+        font-size: initial;
+        color: #ffffff;
+        text-decoration: none;
+        &:first-of-type{
+            margin-right: 18px;
+        }
+    }
+}

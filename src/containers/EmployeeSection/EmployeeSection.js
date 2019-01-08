@@ -5,7 +5,6 @@ import Filter from '../../components/Filter/Filter';
 import Aux from '../../hoc/Aux/Aux';
 import styles from './EmployeeSection.scss';
 
-// Create a higher order function to help manage filtering between components
 const searchingFor = (userInput, searchCategory) => {
     return x => {
         // convert the array item and the returned result to lowercase to avoid false negatives
@@ -27,9 +26,12 @@ class EmployeeSection extends Component {
             searchCategory: 'TIME_DATE_DAY_COMPONENT',
             userInput: '',
         }
-
-        // this.apiUrl = 'https://ibtechnical.firebaseio.com/data.json'
         this.apiUrl = 'https://ibtestdb.firebaseio.com/data.json';
+    }
+    
+    getVisibleItemCount() {
+        const arr = document.getElementsByClassName('WebSales__ItemGroup__23vWY');                    
+        this.setState({itemsDisplayed: arr.length});
     }
     
     componentWillMount() {        
@@ -38,6 +40,9 @@ class EmployeeSection extends Component {
 
     componentDidMount() {
         const salesContainer = document.getElementsByClassName('WebSales__ItemsContainer__1QJjU');
+
+
+        this.getData();
         
         // Create a scroll listener for the item container for automatic updates
         salesContainer[0].addEventListener('scroll', () => {
@@ -46,7 +51,8 @@ class EmployeeSection extends Component {
             
             if (containerHeight - scrollPosition < 2500) {
                 if(this.state.itemsDisplayed < this.state.data.length){
-                    this.loadMoreItems()
+                    this.loadMoreItems();
+                    this.getVisibleItemCount();
                 }
             }
         });
@@ -54,7 +60,6 @@ class EmployeeSection extends Component {
 
     getData() {
         let tempArr = [];
-        let itemCount;
         const currentCount = this.state.itemsDisplayed;
 
         axios.get(this.apiUrl)
@@ -62,35 +67,62 @@ class EmployeeSection extends Component {
             this.setState({data: res.data});
             // Sort the data returned by date 
             this.state.data.sort((a, b) => {            
-                return this.state.sortList !== true ? (a.TIME_DATE_DAY_COMPONENT > b.TIME_DATE_DAY_COMPONENT ? 1: -1) : (a.TIME_DATE_DAY_COMPONENT > b.TIME_DATE_DAY_COMPONENT ? -1: 1);
+                return (
+                    this.state.sortList !== true ? (a.TIME_DATE_DAY_COMPONENT > b.TIME_DATE_DAY_COMPONENT ? 1: -1) : (a.TIME_DATE_DAY_COMPONENT > b.TIME_DATE_DAY_COMPONENT ? -1: 1)
+                );
             });
             
             // only add 100 items to the list to reduce load times
             this.state.data.map((d, i) => {
                 for (let j = i; j < 100 + currentCount; j++) {
                     return (
-                        itemCount = i+1,
                         tempArr.push(d)
                     );
                 }
-                return(tempArr, itemCount);
+                return(tempArr);
             });
             
-            this.setState({tempData: tempArr, itemsDisplayed: itemCount, loading: false});            
+            this.setState({tempData: tempArr, loading: false});
           })
           .catch((err) => {
             console.log(err);
           });
+
+          setTimeout(() => {
+            this.getVisibleItemCount();
+          }, 2000);     
     }
 
-    loadMoreItems = () => { this.setState({loading: true}); this.getData(); }
+    loadMoreItems = () => { 
+        //this.setState({loading: true}); this.getData(); 
+        this.setState({loading: true});
+
+        let tempArr = [];
+        const currentCount = this.state.itemsDisplayed;
+
+        this.state.data.map((d, i) => {
+            for (let j = i; j < 100 + currentCount; j++) {
+                return (
+                    tempArr.push(d)
+                );
+            }
+            return(tempArr);
+        });
+
+        setTimeout(() => {
+            
+            this.getVisibleItemCount();
+        }, 500);
+
+        return this.setState({tempData: tempArr, loading: false});
+    }
 
     showAllItems = () => {
         this.setState({loading: true});
 
         setTimeout(() => {
             this.setState({tempData: [...this.state.data], itemsDisplayed: this.state.data.length, loading: false});
-        }, 700);
+        }, 1000);
     }
 
     sortItems = (val) => {
@@ -112,7 +144,13 @@ class EmployeeSection extends Component {
         
     }
 
-    filterSearchResults = (event) => { this.setState({userInput: event.target.value, itemsDisplayed: this.state.tempData.length}); }
+    filterSearchResults = (event) => { 
+        this.setState({userInput: event.target.value, loading: true});
+        setTimeout(() => {
+            this.getVisibleItemCount()
+            this.setState({loading: false});
+        }, 100);
+    }
     
     updateFilterCategory = (e) => { this.setState({searchCategory: e.target.value}); }
 

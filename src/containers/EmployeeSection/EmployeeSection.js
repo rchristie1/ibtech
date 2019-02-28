@@ -26,7 +26,7 @@ class EmployeeSection extends Component {
             searchCategory: 'TIME_DATE_DAY_COMPONENT',
             userInput: '',
         }
-        this.apiUrl = 'https://ibtestdb.firebaseio.com/data.json';
+        this.apiUrl = ****;
     }
     
     getVisibleItemCount() {

@@ -30,8 +30,8 @@ class LoginRegister extends Component {
             usernameInput: '',
             isLoading: false
         }
-        this.signInURL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAgbLdNRkw01VNQF6cj6lzFCP-Eg0xiiPk'
-        this.signUpURL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAgbLdNRkw01VNQF6cj6lzFCP-Eg0xiiPk';
+        this.signInURL = ***
+        this.signUpURL = ***
     }
 
     componentWillMount(){
